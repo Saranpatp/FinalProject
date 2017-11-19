@@ -12,7 +12,7 @@ import logic.Bullet;
 public class Ship extends MovingEntity {
 	Image ship=new Image("shipSkin.gif");
 	private static  int DEFAULT_XSPEED=10;
-	private static  int DEFAULT_YSPEED=20;
+	private static  int DEFAULT_YSPEED=10;
 	private	boolean flashing = false;
 	private int flashCounter = 0;
 	private int flashDurationCounter = 0;

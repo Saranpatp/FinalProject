@@ -43,60 +43,25 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class Main extends Application {
-	Scene scene;
+	Scene mainmenu,game;
 	private static Font font;
 	private MenuBox menu;
 	private static final int DEFAULT_WIDTH = 1280;// 16:9 Ratio
 	private static final int DEFAUlT_HEIGHT = 800;
-	
+	private static Stage primaryStage; 
 
 	@Override
 	public void start(Stage primaryStage) {
-		//scene = new Scene(createContent());
-		startgame();
-		primaryStage.setTitle("My game");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-
-	}
-
-	public void startgame() {
-		StackPane root = new StackPane();
-		scene = new Scene(root);
-		GameLogic logic = new GameLogic();
-		GameUI gameui = new GameUI();
-		root.getChildren().add(gameui);
-		gameui.requestFocus();
-		AnimationTimer animation = new AnimationTimer() {
-			public void handle(long now) {
-				gameui.paintComponent();
-				logic.logicUpdate();
-				RenderableHolder.getInstance().update();
-				InputUtility.updateInputState();
-			}
-		};
-		animation.start();
-	
-
-	}
-
-	/*public void testLogic(GraphicsContext gc, List<Entity> GOC) {
-		System.out.println(GOC.size());
-		for (Entity e : GOC) {
-			e.draw(gc);
-		}
-	}*/
-
-	private Parent createContent() {
 		Pane root = new Pane();
+		Scene scene = new Scene(root);
 		root.setPrefSize(DEFAULT_WIDTH, DEFAUlT_HEIGHT);
+		playTheme();//play song
 		try (InputStream is = Files.newInputStream(Paths.get("res/images/CyberPunk2.jpg"));
 				InputStream fontStream = Files.newInputStream(Paths.get("res/font/BLADRMF_.TTF"))) {// load resorce font
 																									// and image
 			ImageView img = new ImageView(new Image(is));
 			img.setFitWidth(DEFAULT_WIDTH);
-			// img.setX(value);
-			// img.setWidth(val);
+			
 			img.setFitHeight(DEFAUlT_HEIGHT);
 
 			root.getChildren().add(img);
@@ -112,16 +77,50 @@ public class Main extends Application {
 		MenuItem itemStart = new MenuItem("START GAME");
 		itemQuit.setOnMouseClicked(event -> System.exit(0)); // ใส่ function ให้ ปุ่ม quit
 		itemStart.setOnMouseClicked(event ->{
-			startgame();
 			
+			primaryStage.setScene(startgame());
 		});
 
 		menu = new MenuBox("cy3erpunk", itemStart, new MenuItem("HELP"), new MenuItem("CREDITS"),
 				itemQuit); // set iteamQuit เสดก็ใส่ตรวนี้
 
 		root.getChildren().add(menu);
-		return root;
+		primaryStage.setScene(scene);
+		primaryStage.setTitle("Cy3erPunk");
+		primaryStage.show();
+
 	}
+
+	public Scene startgame() {
+		StackPane root = new StackPane();
+		Scene scene = new Scene(root);
+		GameLogic logic = new GameLogic();
+		GameUI gameui = new GameUI();
+		
+		root.getChildren().add(gameui);
+		gameui.requestFocus();
+		AnimationTimer animation = new AnimationTimer() {
+			public void handle(long now) {
+				gameui.paintComponent();
+				logic.logicUpdate();
+				RenderableHolder.getInstance().update();
+				InputUtility.updateInputState();
+			}
+		};
+		animation.start();
+		return scene;
+		//primaryStage.setScene(scene);
+
+	}
+
+	/*public void testLogic(GraphicsContext gc, List<Entity> GOC) {
+		System.out.println(GOC.size());
+		for (Entity e : GOC) {
+			e.draw(gc);
+		}
+	}*/
+
+	
 
 	public void playTheme() {
 		try {
