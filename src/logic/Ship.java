@@ -26,7 +26,7 @@ public class Ship extends MovingEntity {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.drawImage(ship, x, y);
-		System.out.println("x="+x);
+		//System.out.println("x="+x);
 		
 	}
 	private void moveFB() {

@@ -33,10 +33,9 @@ public class GameLogic {
 	public GameLogic() {
 		this.gameObjectContainer=new ArrayList<Entity>();
 		ship = new Ship(500,700);
-		//enemy = new Enemy(100, 50, 1, 0, 1, 50, 50);
 		spawnEnemy(1);
 		addNewObject(ship);
-		//addNewObject(enemy);
+		
 		
 	}
 	protected void addNewObject(Entity entity){
@@ -60,9 +59,9 @@ public class GameLogic {
 				}
 			if (gameObjectContainer.get(i) instanceof Bullet) {
 				((Bullet) gameObjectContainer.get(i)).update();
-				if(((Bullet) gameObjectContainer.get(i)).isCollide(wave)) {
+				if(((Bullet) gameObjectContainer.get(i)).isCollide(wave)||((Bullet) gameObjectContainer.get(i)).deleted) {
 					gameObjectContainer.remove(i);
-					System.out.println("COLLIDED TRUE");
+					//System.out.println("COLLIDED TRUE");
 				}
 			}
 		}

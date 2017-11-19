@@ -2,6 +2,7 @@ package logic;
 
 
 
+import drawing.GameUI;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -10,6 +11,7 @@ public class Bullet extends MovingEntity {
 	int diameter; // how large the bullet will be
 	private int damage; // damage of the bullet
 	public static final int DEFAULT_BULLET_DAMAGE = 1;
+	public boolean deleted=false;//may have getter for this later
 	public int getDiameter() {
 		return diameter;
 	}
@@ -45,8 +47,9 @@ public class Bullet extends MovingEntity {
 		
 	}
 	public void update() {
-		// TODO Auto-generated method stub
-		//System.out.println("ySpeed="+ySpeed);
+		// delete when go off the screen to save memory
+		if(y<0||y>GameUI.DEFAULT_GAME_HEIGHT) deleted=true;
+		System.out.println("bullet y="+ y);
 		this.y-=ySpeed; // should go up
 	}
 	@Override  public Rectangle getBounds(
