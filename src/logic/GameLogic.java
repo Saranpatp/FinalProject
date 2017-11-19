@@ -50,6 +50,7 @@ public class GameLogic {
 		ship.update();
 		if(ship.isShooting) {
 			shoot();
+			ship.isShooting=false;
 		}
 		ship.isShooting=false;
 		RenderableHolder.getInstance().update();
@@ -66,12 +67,6 @@ public class GameLogic {
 			}
 		}
 		RenderableHolder.getInstance().update();
-		
-		//System.out.println("is bullet collided with alien"+ bullet.collideWith(enemy));
-		//ship2.update();
-		/*if(!mine.isDestroyed() && tank.collideWith(mine)){
-			mine.onCollision(tank);
-		}*/
 	}
 	private void shoot() {
 		Bullet bullet = new Bullet(ship.x,ship.y,0,10,10);

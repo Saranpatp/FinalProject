@@ -10,7 +10,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Enemy extends MovingEntity{
 	
-	protected final int DEFAULT_ALIEN_HEALTH = 10; //have to hit it 10 time
+	protected final int DEFAULT_ALIEN_HEALTH = 3; //have to hit it 10 time
 	protected int health;
 	private int enemytype,width,height;
 	
@@ -69,6 +69,7 @@ public class Enemy extends MovingEntity{
 		if(x<0 || x>GameUI.DEFAULT_GAME_WIDTH-40) {
 			setxSpeed(-getxSpeed()); // to make it turn back
 			//ใส่ +yspeed ตรงนี้
+			setY(getY()+40);
 		}
 		setX(getX()+getxSpeed());//move normaly
 		//**************************yspeed add in later ใส่ ที่หลังให้เคลื่อน ตอนหมดจอ
@@ -78,7 +79,7 @@ public class Enemy extends MovingEntity{
 	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
-		Rectangle enemyHitbox = new Rectangle(x,y,width,height);
+		Rectangle enemyHitbox = new Rectangle(x,y,width,height-3); // reduce hit box to eleminate square feeling when bullet hitting
 		//enemyHitbox.setFill(Color.AQUA);
 		return enemyHitbox;
 	}
