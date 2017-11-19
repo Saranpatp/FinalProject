@@ -13,7 +13,7 @@ import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
 public class GameUI extends Canvas{
-	public static final int DEFAULT_GAME_WIDTH = 1000;  
+	public static final int DEFAULT_GAME_WIDTH = 1280;  
 	public static final int DEFAULT_GAME_HEIGHT = 800;
 	
 	public GameUI() {

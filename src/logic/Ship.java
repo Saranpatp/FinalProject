@@ -1,5 +1,6 @@
  package logic;
 
+import drawing.GameUI;
 import input.InputUtility;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -29,13 +30,20 @@ public class Ship extends MovingEntity {
 		//System.out.println("x="+x);
 		
 	}
-	private void moveFB() {
+	private void moveFB() {// change to getter and setter later
 		//if(y<680&&y>-50)
 		this.y+=ySpeed;
+		if(y<0) y=0;
+		if(y>GameUI.DEFAULT_GAME_HEIGHT-50) y=GameUI.DEFAULT_GAME_HEIGHT-50;
+		//else this.y+=ySpeed;
 	}
 	private void moveLR() {
 		//if(x>800&& x<-50)
-		this.x+=xSpeed;
+		x+=xSpeed;
+		if(x<0) x=0;
+		if(x>GameUI.DEFAULT_GAME_WIDTH-50) x=GameUI.DEFAULT_GAME_WIDTH-50;
+		//this.x+=xSpeed;
+		//System.out.println("x="+x);
 	}
 	@Override
 	public Rectangle getBounds() {
@@ -43,10 +51,6 @@ public class Ship extends MovingEntity {
 		Rectangle shipHitbox= new Rectangle(x,y,50,50);
 		shipHitbox.setFill(Color.BLUE);
 		return shipHitbox;
-	}
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
 	}
 	public void update() {
 		if (flashing) {
@@ -73,7 +77,7 @@ public class Ship extends MovingEntity {
 		if (InputUtility.getKeyPressed(KeyCode.SPACE)) {
 			//shoot the bullet
 			isShooting = true;
-			System.out.println("PEW PEW PEW");
+			//System.out.println("PEW PEW PEW");
 		}
 		if (InputUtility.getKeyPressed(KeyCode.S)) {
 			ySpeed=DEFAULT_YSPEED;
