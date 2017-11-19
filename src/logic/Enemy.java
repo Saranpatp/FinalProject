@@ -1,6 +1,9 @@
 package logic;
 
+import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import drawing.GameUI;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,9 +19,12 @@ public class Enemy extends MovingEntity{
 	//public boolean deleted;
 	
 
-	Image alien1 = new Image("alien1Skin.gif");
-	Image alien2 = new Image("alien2Skin.gif");
-	Image alien3 = new Image("alien3Skin.gif");
+	public static Image alien1;
+	public static Image alien2;
+	public static Image alien3;
+	static {
+		loadResource();
+	}
 		public int getHealth() {
 		return health;
 	}
@@ -34,6 +40,17 @@ public class Enemy extends MovingEntity{
 		else health-=damage;
 	}
 	
+	public static void loadResource() {
+		try {
+			alien1 = new Image("alien1Skin.gif");
+			alien2 = new Image("alien2Skin.gif");
+			alien3 = new Image("alien3Skin.gif");
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Cant load alien skin");
+		}
+		
+	}
 	
 	public Enemy(int x, int y, int xSpeed, int ySpeed,int enemytype,int width,int height) {
 		super(x, y, xSpeed, ySpeed);
