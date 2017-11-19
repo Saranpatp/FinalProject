@@ -54,9 +54,11 @@ public class GameLogic {
 		ship.isShooting=false;
 		RenderableHolder.getInstance().update();
 		for (int i = gameObjectContainer.size() - 1; i >= 0; i--) {
+			if(gameObjectContainer.get(i) instanceof Enemy){
+				((Enemy) gameObjectContainer.get(i)).update();
+				}
 			if (gameObjectContainer.get(i) instanceof Bullet) {
 				((Bullet) gameObjectContainer.get(i)).update();
-				//((Bullet) gameObjectContainer.get(i)).isCollide(enemy);
 				if(((Bullet) gameObjectContainer.get(i)).isCollide(wave)) {
 					gameObjectContainer.remove(i);
 					System.out.println("COLLIDED TRUE");
