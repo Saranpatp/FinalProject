@@ -107,7 +107,7 @@ public class Main extends Application {
 		GameUI gameui = new GameUI();
 		
 		root.getChildren().add(gameui);
-		gameui.requestFocus();
+		gameui.requestFocus(); // without this UI didnt response
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {
 				gameui.paintComponent();

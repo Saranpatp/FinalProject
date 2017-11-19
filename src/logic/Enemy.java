@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import drawing.GameUI;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -19,12 +20,11 @@ public class Enemy extends MovingEntity{
 	//public boolean deleted;
 	
 
-	public static Image alien1;
-	public static Image alien2;
-	public static Image alien3;
-	static {
-		loadResource();
-	}
+	public  Image alien1;
+	public  Image alien2;
+	public  Image alien3;
+	
+	
 		public int getHealth() {
 		return health;
 	}
@@ -40,7 +40,7 @@ public class Enemy extends MovingEntity{
 		else health-=damage;
 	}
 	
-	public static void loadResource() {
+	public void loadResource() {
 		try {
 			alien1 = new Image("alien1Skin.gif");
 			alien2 = new Image("alien2Skin.gif");
@@ -58,6 +58,7 @@ public class Enemy extends MovingEntity{
 		this.width=width;
 		this.height=height;
 		this.z=400;
+		loadResource();
 		if(enemytype<4) {
 			health = DEFAULT_ALIEN_HEALTH;// boss will add in later in FULL GAME RELEASE
 		}

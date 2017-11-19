@@ -4,6 +4,7 @@ package logic;
 
 import drawing.GameUI;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -21,7 +22,14 @@ public class Bullet extends MovingEntity {
 			for(int j = 0; j<enemywave[i].length;j++) {
 				if(this.collideWith(enemywave[i][j])&&!enemywave[i][j].isDestroyed()) {
 					//decrease health
-					enemywave[i][j].decreaseHealth(DEFAULT_BULLET_DAMAGE);//visible is not set
+					try {
+						AudioClip damageSound = new AudioClip(ClassLoader.getSystemResource("damageSound.wav").toString());
+						damageSound.play();
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("cant load damage sound");
+					}
+					enemywave[i][j].decreaseHealth(damage);//visible is not set
 					destroyed=true;// this destroy the bullet
 					return isDestroyed(); // this return this bullet is destroy
 				}
@@ -35,6 +43,7 @@ public class Bullet extends MovingEntity {
 		super(x, y, 0, 0);
 		this.ySpeed=ySpeed; // Not sure why put ySpeed to the super isnt working
 		this.diameter=diameter;
+		this.damage = DEFAULT_BULLET_DAMAGE;
 		this.z=500;
 	}
 			
@@ -49,12 +58,11 @@ public class Bullet extends MovingEntity {
 	public void update() {
 		// delete when go off the screen to save memory
 		if(y<0||y>GameUI.DEFAULT_GAME_HEIGHT) destroyed=true;
-		System.out.println("bullet y="+ y);
 		this.y-=ySpeed; // should go up
 	}
 	@Override  public Rectangle getBounds(
   ) {
-		System.out.println(diameter);
+		//System.out.println(diameter);
         Rectangle bulletHitbox = new Rectangle(x+21, y, 7, diameter);//use shape.getBound().getBoundInParent().intersects(shape.getBound().getBoundInParent());
         //System.out.println(bulletHitbox.getBoundsInParent().toString());
         return bulletHitbox;

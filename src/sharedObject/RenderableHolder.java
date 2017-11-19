@@ -7,6 +7,8 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
+import logic.Bullet;
+import logic.Enemy;
 import logic.Field;
 import logic.Ship;
 //import logic.;
@@ -50,8 +52,8 @@ public class RenderableHolder {
 		Collections.sort(entities, comparator);
 		for(IRenderable x: entities){
 			if(x instanceof Ship) System.out.println("Ship");
-			if(x instanceof Field) System.out.println("field");
-			
+			if(x instanceof Enemy) System.out.println("Enemy");
+			if(x instanceof Bullet) System.out.println("Bullet");
 		}
 	}
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import drawing.GameUI;
+import javafx.scene.media.AudioClip;
 import sharedObject.RenderableHolder;
 
 public class GameLogic {
@@ -72,6 +73,13 @@ public class GameLogic {
 		RenderableHolder.getInstance().update();
 	}
 	private void shoot() {
+		try {
+			AudioClip shootsound = new AudioClip(ClassLoader.getSystemResource("bulletSound.wav").toString());
+			shootsound.play();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Cant load bullet sound");
+		}
 		Bullet bullet = new Bullet(ship.x,ship.y,0,10,10);
 		addNewObject(bullet);
 		
