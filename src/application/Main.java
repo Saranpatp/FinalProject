@@ -48,14 +48,20 @@ public class Main extends Application {
 	private MenuBox menu;
 	private static final int DEFAULT_WIDTH = 1280;// 16:9 Ratio
 	private static final int DEFAUlT_HEIGHT = 800;
-	private static Stage primaryStage; 
+	
 
 	@Override
 	public void start(Stage primaryStage) {
+		try {//playsong
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("Ost.wav"));
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.start();
+		
 		Pane root = new Pane();
 		Scene scene = new Scene(root);
 		root.setPrefSize(DEFAULT_WIDTH, DEFAUlT_HEIGHT);
-		playTheme();//play song
+		
 		try (InputStream is = Files.newInputStream(Paths.get("res/images/CyberPunk2.jpg"));
 				InputStream fontStream = Files.newInputStream(Paths.get("res/font/BLADRMF_.TTF"))) {// load resorce font
 																									// and image
@@ -77,8 +83,9 @@ public class Main extends Application {
 		MenuItem itemStart = new MenuItem("START GAME");
 		itemQuit.setOnMouseClicked(event -> System.exit(0)); // ใส่ function ให้ ปุ่ม quit
 		itemStart.setOnMouseClicked(event ->{
-			
+			clip.stop();
 			primaryStage.setScene(startgame());
+			
 		});
 
 		menu = new MenuBox("cy3erpunk", itemStart, new MenuItem("HELP"), new MenuItem("CREDITS"),
@@ -88,7 +95,9 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Cy3erPunk");
 		primaryStage.show();
-
+		} catch (Exception ex) {
+			System.out.println("Cant load wav");
+		}
 	}
 
 	public Scene startgame() {
