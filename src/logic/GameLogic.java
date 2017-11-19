@@ -50,7 +50,7 @@ public class GameLogic {
 		ship.update();
 		if(ship.isShooting) {
 			shoot();
-			ship.isShooting=false;
+			
 		}
 		ship.isShooting=false;
 		RenderableHolder.getInstance().update();
