@@ -59,10 +59,14 @@ public class GameLogic {
 				}
 			if (gameObjectContainer.get(i) instanceof Bullet) {
 				((Bullet) gameObjectContainer.get(i)).update();
-				if(((Bullet) gameObjectContainer.get(i)).isCollide(wave)||((Bullet) gameObjectContainer.get(i)).deleted) {
+				if(((Bullet) gameObjectContainer.get(i)).isCollide(wave)) {
+					//isCollide already decrease the enemy health
 					gameObjectContainer.remove(i);
 					//System.out.println("COLLIDED TRUE");
 				}
+			}
+			if(((Entity) gameObjectContainer.get(i)).destroyed){
+				gameObjectContainer.remove(i);
 			}
 		}
 		RenderableHolder.getInstance().update();

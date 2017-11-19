@@ -10,6 +10,7 @@ public abstract class Entity implements IRenderable {
 	
 	protected int z;
 	protected boolean visible,destroyed;
+	//public boolean deleted = false;// already use destory
 	
 	public Entity() {};
 	

@@ -13,6 +13,7 @@ public class Enemy extends MovingEntity{
 	protected final int DEFAULT_ALIEN_HEALTH = 3; //have to hit it 10 time
 	protected int health;
 	private int enemytype,width,height;
+	//public boolean deleted;
 	
 
 	Image alien1 = new Image("alien1Skin.gif");
@@ -73,6 +74,9 @@ public class Enemy extends MovingEntity{
 		}
 		setX(getX()+getxSpeed());//move normaly
 		//**************************yspeed add in later ใส่ ที่หลังให้เคลื่อน ตอนหมดจอ
+		if(y>GameUI.DEFAULT_GAME_HEIGHT||y<0) {
+			destroyed=true;//fixed memory leak
+		}
 		
 	}
 

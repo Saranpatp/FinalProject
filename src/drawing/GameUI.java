@@ -25,7 +25,7 @@ public class GameUI extends Canvas{
 		this.setOnKeyPressed((KeyEvent event) -> {
 			InputUtility.setKeyPressed(event.getCode(), true);
 		});
-
+		// comment this when want to do only triggered || shoot one bullet at a time
 		this.setOnKeyReleased((KeyEvent event) -> {
 			InputUtility.setKeyPressed(event.getCode(), false);
 		});

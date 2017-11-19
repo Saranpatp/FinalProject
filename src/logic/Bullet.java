@@ -11,7 +11,7 @@ public class Bullet extends MovingEntity {
 	int diameter; // how large the bullet will be
 	private int damage; // damage of the bullet
 	public static final int DEFAULT_BULLET_DAMAGE = 1;
-	public boolean deleted=false;//may have getter for this later
+	//public boolean deleted=false;//may have getter for this later
 	public int getDiameter() {
 		return diameter;
 	}
@@ -48,7 +48,7 @@ public class Bullet extends MovingEntity {
 	}
 	public void update() {
 		// delete when go off the screen to save memory
-		if(y<0||y>GameUI.DEFAULT_GAME_HEIGHT) deleted=true;
+		if(y<0||y>GameUI.DEFAULT_GAME_HEIGHT) destroyed=true;
 		System.out.println("bullet y="+ y);
 		this.y-=ySpeed; // should go up
 	}
