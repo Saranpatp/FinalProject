@@ -13,15 +13,13 @@ import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
 public class GameUI extends Canvas{
+	public static final int DEFAULT_GAME_WIDTH = 1000;
+	public static final int DEFAULT_GAME_HEIGHT = 800;
 	
-	public GameUI(double width,double height) {
-		super(width, height);
+	public GameUI() {
+		super(DEFAULT_GAME_WIDTH, DEFAULT_GAME_HEIGHT);
 		this.setVisible(true);
-		/*Ship ship = new Ship(100,100);
-		ship.draw(gc);*/
-		
-		addListerner();
-		
+		addListerner();//add event handler to canvas
 	}
 	public void addListerner() {
 		this.setOnKeyPressed((KeyEvent event) -> {
@@ -64,25 +62,19 @@ public class GameUI extends Canvas{
 			}
 		});
 	}
-	/*public void update() {
-		GraphicsContext gc = this.getGraphicsContext2D();
-		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, this.getWidth(), this.getHeight());
-	}*/
 	public void paintComponent() {
 		GraphicsContext gc = this.getGraphicsContext2D();
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.BLACK);//draw black background on top the last one everytime
 		gc.fillRect(0, 0, this.getWidth(), this.getHeight());
-		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
+		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {//draw the entity in the list //SPAWNER
 			//System.out.println(entity.getZ());
 			if (entity.isVisible() && !entity.isDestroyed()) {
 				entity.draw(gc);
 			}
-			//if(entity.isDestroyed())RenderableHolder.getInstance().getEntities().remove(entity);
+			
 		}
 
-		// System.out.println("===============");
-		// System.out.println("===============");
+		
 
 	}
 

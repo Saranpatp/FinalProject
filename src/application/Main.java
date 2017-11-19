@@ -26,7 +26,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			GameLogic logic = new GameLogic();
-			GameUI gameui = new GameUI(640, 480);
+			GameUI gameui = new GameUI();
 			root.getChildren().add(gameui);
 			//GraphicsContext gc=gameui.getGraphicsContext2D();
 			//testLogic(gc, logic.gameObjectContainer);

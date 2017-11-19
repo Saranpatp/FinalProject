@@ -2,7 +2,7 @@ package logic;
 
 
 
-public abstract class MovingEntity extends Entity implements Moveable  {
+public abstract class MovingEntity extends Entity  {
 	protected int xSpeed;
 	protected int ySpeed;
 	
@@ -12,7 +12,7 @@ public abstract class MovingEntity extends Entity implements Moveable  {
 		this.ySpeed=ySpeed;
 	}
 	
-	public double getxSpeed() {
+	public int getxSpeed() {
 		return xSpeed;
 	}
 
@@ -20,14 +20,14 @@ public abstract class MovingEntity extends Entity implements Moveable  {
 		this.xSpeed = xSpeed;
 	}
 
-	public double getySpeed() {
+	public int getySpeed() {
 		return ySpeed;
 	}
 
 	public void setySpeed(int ySpeed) {
 		this.ySpeed = ySpeed;
 	}
-	@Override
+	
 	public void move() {
 		this.x+=xSpeed;
 		this.y+=ySpeed;

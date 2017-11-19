@@ -1,4 +1,4 @@
-package logic;
+ package logic;
 
 import input.InputUtility;
 import javafx.scene.canvas.GraphicsContext;
@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import logic.Bullet;
 
-public class Ship extends MovingEntity implements Moveable{
+public class Ship extends MovingEntity {
 	Image ship=new Image("shipSkin.gif");
 	private static  int DEFAULT_XSPEED=10;
 	private static  int DEFAULT_YSPEED=20;

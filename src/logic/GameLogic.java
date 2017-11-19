@@ -7,27 +7,36 @@ import drawing.GameUI;
 import sharedObject.RenderableHolder;
 
 public class GameLogic {
-	//private List<Entity> gameObjectContainer;
-	public List<Entity> gameObjectContainer; //test only
-	private Ship ship,ship2;
-	private Field field;
-	private Enemy enemy;
+	private List<Entity> gameObjectContainer; //test only
+	private Ship ship;
+	//private Enemy enemy;
+	private Enemy[][] wave=new Enemy[5][10];
+	private int enemycolSpace = 80; //40pixel space each
+	private int enemyrowSpace = 80;// 40pixel apart previous row
+	//add a wave of enemy by using array[][] to do so
 	//private Bullet bullet;
+	public void spawnEnemy(int wavenumber) {//still have only wave number 1 must update to 1-3 level and then boss
+		if(wavenumber==1) {//set their health to be low too
+			for(int i =0;i<wave.length;i++) {
+				for(int j = 0; j<wave[i].length;j++) {
+					/*int prev = i;
+					if(prev!=i) {
+						//add y space to indicate next row and reset x postion to be on the left
+					}*/
+					wave[i][j] = new Enemy(j*enemycolSpace, i*enemyrowSpace, 1, 0, 1, 40, 40);// i must be y axis because it indicate the row
+					addNewObject(wave[i][j]);
+				}
+				
+			}
+		}
+	}
 	public GameLogic() {
 		this.gameObjectContainer=new ArrayList<Entity>();
-		//Field field = new Field();
-		//RenderableHolder.getInstance().add(field);
-		//field = new Field();
-		ship = new Ship(160,300);
-		enemy = new Enemy(100, 50, 1, 0, 1, 50, 50);
-		//ship2 = new Ship(400,200);
-		//addNewObject(field)
+		ship = new Ship(500,700);
+		//enemy = new Enemy(100, 50, 1, 0, 1, 50, 50);
+		spawnEnemy(1);
 		addNewObject(ship);
-		addNewObject(enemy);
-		//bullet = new Bullet(ship.getX(), ship.getY(),0, 10, 10);
-		//addNewObject(bullet);
-		//addNewObject(bullet);
-		//addNewObject(ship2);
+		//addNewObject(enemy);
 		
 	}
 	protected void addNewObject(Entity entity){
@@ -37,8 +46,8 @@ public class GameLogic {
 	
 	public void logicUpdate(){
 
+		//enemy.update();
 		ship.update();
-		enemy.update();
 		if(ship.isShooting) {
 			shoot();
 		}
@@ -48,7 +57,7 @@ public class GameLogic {
 			if (gameObjectContainer.get(i) instanceof Bullet) {
 				((Bullet) gameObjectContainer.get(i)).update();
 				//((Bullet) gameObjectContainer.get(i)).isCollide(enemy);
-				if(((Bullet) gameObjectContainer.get(i)).isCollide(enemy)) {
+				if(((Bullet) gameObjectContainer.get(i)).isCollide(wave)) {
 					gameObjectContainer.remove(i);
 					System.out.println("COLLIDED TRUE");
 				}

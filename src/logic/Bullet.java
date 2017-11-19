@@ -7,30 +7,33 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Bullet extends MovingEntity {
-	int diameter;
-	
+	int diameter; // how large the bullet will be
+	private int damage; // damage of the bullet
+	public static final int DEFAULT_BULLET_DAMAGE = 1;
 	public int getDiameter() {
 		return diameter;
 	}
 	
-	public boolean isCollide(Entity entity) {
-		
-		if (this.collideWith(entity)&&!entity.isDestroyed()) {
-				
-				entity.destroyed = true; // not appear but still in GAME as a black fucking object
-				destroyed = true;
-				
-				return isDestroyed();
+	public boolean isCollide(Enemy[][] enemywave) {//only ship can shoot with this iscollied function 
+		for(int i =0;i<enemywave.length;i++) {
+			for(int j = 0; j<enemywave[i].length;j++) {
+				if(this.collideWith(enemywave[i][j])&&!enemywave[i][j].isDestroyed()) {
+					//decrease health
+					enemywave[i][j].decreaseHealth(DEFAULT_BULLET_DAMAGE);//visible is not set
+					destroyed=true;// this destroy the bullet
+					return isDestroyed(); // this return this bullet is destroy
+				}
+			}
+			
 		}
-		
 		return isDestroyed();
 	}
 	int ySpeed; //bullet will shoot down or up only
 	public Bullet(int x,int y,int xSpeed,int ySpeed,int diameter) {
 		super(x, y, 0, 0);
-		this.ySpeed=ySpeed;
+		this.ySpeed=ySpeed; // Not sure why put ySpeed to the super isnt working
 		this.diameter=diameter;
-		//this.z=1000;
+		this.z=500;
 	}
 			
 
