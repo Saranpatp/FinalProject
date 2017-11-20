@@ -2,6 +2,7 @@ package menu;
 
 import application.Main;
 import menu.MenuItem;
+import javafx.animation.FadeTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.effect.DropShadow;
@@ -11,10 +12,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class MenuBox extends StackPane {
 	private int recwidth = (int) (Main.DEFAULT_WIDTH * 0.35);
-
+	public FadeTransition ft; // to sync
+	
+	
 	public MenuBox(String title, MenuItem... items) { // Menuitems... เเปลว่าจะรับข้อมูลเเนว menuitem ได้หลายตัว
 		Rectangle bg = new Rectangle(recwidth, Main.DEFAUlT_HEIGHT);
 		bg.setOpacity(0.5); // set opacity ที่ 20%
@@ -23,11 +27,27 @@ public class MenuBox extends StackPane {
 		shadow.setSpread(0.8);// เงา spread มากขึ้น
 
 		bg.setEffect(shadow);
+		
+		//background blink
+		/*FadeTransition ft = new FadeTransition(Duration.millis(1800),bg);
+		
+		ft.setFromValue(0.5);
+	    ft.setToValue(0.3);
+	    ft.setCycleCount(-1); // infinite loop
+	    ft.setAutoReverse(true);
+	    ft.play();*/
+	    
 
 		Text text = new Text(title + " ");
-
+	
 		text.setFont(Main.font);
 		text.setFill(Color.WHITE);
+		ft = new FadeTransition(Duration.millis(1000),text);
+		ft.setFromValue(1.0);
+	    ft.setToValue(0.3);
+	    ft.setCycleCount(100);
+	    ft.setAutoReverse(true);
+	    ft.play();
 
 		Line hSep = new Line(); // เส้นใต้ title
 		hSep.setEndX(recwidth); // เส้นราบเเนวเเกน x เเนวนิน

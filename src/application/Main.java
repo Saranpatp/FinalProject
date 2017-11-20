@@ -38,7 +38,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {//playsong
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("Ost.wav"));
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("Ost2.wav"));
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.start();
@@ -68,7 +68,7 @@ public class Main extends Application {
 		MenuItem itemStart = new MenuItem("START GAME");
 		itemQuit.setOnMouseClicked(event -> System.exit(0)); // ใส่ function ให้ ปุ่ม quit
 		itemStart.setOnMouseClicked(event ->{
-			clip.stop();
+			clip.stop();// stop the music before game start
 			primaryStage.setScene(startgame());
 			
 		});
@@ -108,114 +108,11 @@ public class Main extends Application {
 		};
 		animation.start();
 		return scene;
-		//primaryStage.setScene(scene);
+		
 
 	}
 
-	/*public void testLogic(GraphicsContext gc, List<Entity> GOC) {
-		System.out.println(GOC.size());
-		for (Entity e : GOC) {
-			e.draw(gc);
-		}
-	}*/
 
-	
-
-	public void playTheme() {
-		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("Ost.wav"));
-			Clip clip = AudioSystem.getClip();
-			clip.open(audioInputStream);
-			clip.start();
-		} catch (Exception ex) {
-			System.out.println("Cant load wav");
-		}
-	}
-
-	/*private static class MenuBox extends StackPane {
-		private int recwidth = (int) (DEFAULT_WIDTH * 0.35);
-
-		public MenuBox(String title, MenuItem... items) { // Menuitems... เเปลว่าจะรับข้อมูลเเนว menuitem ได้หลายตัว
-			Rectangle bg = new Rectangle(recwidth, DEFAUlT_HEIGHT);
-			bg.setOpacity(0.5); // set opacity ที่ 20%
-
-			DropShadow shadow = new DropShadow(7, 5, 0, Color.BLACK);
-			shadow.setSpread(0.8);// เงา spread มากขึ้น
-
-			bg.setEffect(shadow);
-
-			Text text = new Text(title + " ");
-
-			text.setFont(font);
-			text.setFill(Color.WHITE);
-
-			Line hSep = new Line(); // เส้นใต้ title
-			hSep.setEndX(recwidth); // เส้นราบเเนวเเกน x เเนวนิน
-			hSep.setStroke(Color.PLUM);
-			hSep.setOpacity(0.4);// ********************************change
-
-			Line vSep = new Line();// เส้นเเนตั้ง
-			vSep.setStartX(recwidth);
-			vSep.setEndX(recwidth);
-			vSep.setEndY(DEFAULT_WIDTH);
-			vSep.setStroke(Color.DARKMAGENTA);
-			vSep.setOpacity(0.4);
-
-			VBox vbox = new VBox();
-			vbox.setAlignment(Pos.TOP_RIGHT);
-			vbox.setPadding(new Insets(55, 0, 0, 0));
-			vbox.getChildren().addAll(text, hSep);// ใส่พวก menu item ทั้งหมดลง ใน vbox
-			vbox.getChildren().addAll(items);
-
-			setAlignment(Pos.TOP_RIGHT); // top right of stack pane
-			getChildren().addAll(bg, vSep, vbox);
-
-		}
-	}
-
-	private static class MenuItem extends StackPane {// ตัวเมนูต่างๆ
-		private int recwidth = (int) (DEFAULT_WIDTH * 0.35);
-
-		public MenuItem(String name) {
-			Rectangle bg = new Rectangle(recwidth, 35);// background ของ menu เเต่ละอัน
-
-			LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-					new Stop[] { new Stop(0, Color.WHITE), new Stop(0.2, Color.VIOLET) });
-
-			bg.setFill(gradient);
-			bg.setVisible(false);
-			bg.setEffect(new DropShadow(5, 0, 5, Color.DARKMAGENTA));// was Black***************** //radius,drop at
-																		// x,drop at y,colour
-
-			Text text = new Text(name + "      ");
-			text.setFill(Color.LIGHTGREY);
-			text.setFont(Font.font(30));
-
-			setAlignment(Pos.CENTER_RIGHT);
-			getChildren().addAll(bg, text);
-
-			setOnMouseEntered(event -> { // lambda function
-				bg.setVisible(true);
-				text.setFill(Color.WHITE);
-			});
-
-			setOnMouseExited(event -> {
-				bg.setVisible(false);
-				text.setFill(Color.LIGHTGRAY);
-			});
-
-			setOnMousePressed(event -> {
-				bg.setFill(Color.WHITE);
-				text.setFill(Color.VIOLET);
-			});
-
-			setOnMouseReleased(event -> {
-				bg.setFill(gradient);
-				text.setFill(Color.WHITE);
-			});
-
-		}
-	}*/
 
 	public static void main(String[] args) {
 		launch(args);
