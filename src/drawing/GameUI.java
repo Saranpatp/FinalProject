@@ -64,7 +64,7 @@ public class GameUI extends Canvas{
 	}
 	public void paintComponent() {
 		GraphicsContext gc = this.getGraphicsContext2D();
-		gc.setFill(Color.BLACK);//draw black background on top the last one everytime
+		gc.setFill(Color.WHITE);//draw black background on top the last one everytime
 		gc.fillRect(0, 0, this.getWidth(), this.getHeight());
 		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {//draw the entity in the list //SPAWNER
 			//System.out.println(entity.getZ());
