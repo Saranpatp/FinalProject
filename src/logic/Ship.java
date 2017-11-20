@@ -74,8 +74,8 @@ public class Ship extends MovingEntity {
 		x += xSpeed;
 		if (x < 0)
 			x = 0;
-		if (x > GameUI.DEFAULT_GAME_WIDTH - 50)
-			x = GameUI.DEFAULT_GAME_WIDTH - 50;
+		if (x > GameUI.DEFAULT_GAME_WIDTH - 70)
+			x = GameUI.DEFAULT_GAME_WIDTH - 70;
 		// this.x+=xSpeed;
 		// System.out.println("x="+x);
 	}

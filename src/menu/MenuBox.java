@@ -17,8 +17,7 @@ import javafx.util.Duration;
 public class MenuBox extends StackPane {
 	private int recwidth = (int) (Main.DEFAULT_WIDTH * 0.35);
 	public FadeTransition ft; // to sync
-	
-	
+
 	public MenuBox(String title, MenuItem... items) { // Menuitems... เเปลว่าจะรับข้อมูลเเนว menuitem ได้หลายตัว
 		Rectangle bg = new Rectangle(recwidth, Main.DEFAUlT_HEIGHT);
 		bg.setOpacity(0.5); // set opacity ที่ 20%
@@ -27,38 +26,37 @@ public class MenuBox extends StackPane {
 		shadow.setSpread(0.8);// เงา spread มากขึ้น
 
 		bg.setEffect(shadow);
-		
-		//background blink
-		/*FadeTransition ft = new FadeTransition(Duration.millis(1800),bg);
-		
-		ft.setFromValue(0.5);
-	    ft.setToValue(0.3);
-	    ft.setCycleCount(-1); // infinite loop
-	    ft.setAutoReverse(true);
-	    ft.play();*/
-	    
+
+		// background blink
+		/*
+		 * FadeTransition ft = new FadeTransition(Duration.millis(1800),bg);
+		 * 
+		 * ft.setFromValue(0.5); ft.setToValue(0.3); ft.setCycleCount(-1); // infinite
+		 * loop ft.setAutoReverse(true); ft.play();
+		 */
 
 		Text text = new Text(title + " ");
-	
-		text.setFont(Main.font);
-		text.setFill(Color.WHITE);
-		ft = new FadeTransition(Duration.millis(750),text);
-		ft.setFromValue(1.0);
-	    ft.setToValue(0);
-	    ft.setCycleCount(100);
-	    ft.setAutoReverse(true);
-	    ft.play();
 
-	    Rectangle boarder = new Rectangle(0,0,250,300);
-	    boarder.setFill(Color.GRAY);
-	    
-	    /*Line hSep = new Line(); // เส้นใต้ title
-	   // hSep.setStartX(recwidth*0.20);
-	    hSep.setEndX(recwidth); // เส้นราบเเนวเเกน x เเนวนิน
-	    hSep.setStrokeWidth(3);
-		hSep.setStroke(Color.LIGHTGRAY);*/
-		
-		//hSep.setOpacity(1);// ********************************change*/
+		text.setFont(Main.font);
+		text.setFill(Color.RED);
+		ft = new FadeTransition(Duration.millis(750), text);
+		ft.setFromValue(1.0);
+		ft.setToValue(0);
+		ft.setCycleCount(100);
+		ft.setAutoReverse(true);
+		ft.play();
+
+		/*Line hSep1 = new Line(); // เส้นใต้ title
+		// hSep.setStartX(recwidth*0.20);
+		hSep1.setEndX(recwidth); // เส้นราบเเนวเเกน x เเนวนิน
+		hSep1.setStrokeWidth(5);
+		hSep1.setStroke(Color.CRIMSON);
+
+		Line hSep2 = new Line(); // เส้นใต้ title // hSep.setStartX(recwidth*0.20);
+		hSep2.setEndX(recwidth); // เส้นราบเเนวเเกน x เเนวนิน hSep.setStrokeWidth(3);
+		hSep2.setStroke(Color.CRIMSON);
+		hSep2.setStrokeWidth(5);
+		//hSep2.setOpacity(1);// ********************************change*/
 
 		Line vSep = new Line();// เส้นเเนตั้ง
 		vSep.setStartX(recwidth);
@@ -78,4 +76,3 @@ public class MenuBox extends StackPane {
 
 	}
 }
-

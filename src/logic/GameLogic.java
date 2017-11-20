@@ -47,7 +47,7 @@ public class GameLogic {
 	
 	public void logicUpdate(){
 		if(bulletCounter<20) bulletCounter+=1;
-		System.out.println("bullet COunter" + bulletCounter);//test bullet reload
+		//System.out.println("bullet COunter" + bulletCounter);//test bullet reload
 		//enemy.update();
 		ship.update();
 		if(ship.isShooting) {
