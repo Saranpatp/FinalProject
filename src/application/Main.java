@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -15,39 +13,26 @@ import drawing.GameUI;
 import input.InputUtility;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.stage.Stage;
-import logic.Entity;
-import logic.Field;
 import logic.GameLogic;
-import logic.Ship;
 import sharedObject.RenderableHolder;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
+
+
+import menu.MenuItem;
+import menu.MenuBox;
 
 public class Main extends Application {
-	Scene mainmenu,game;
-	private static Font font;
+	//Scene mainmenu,game;
+	public static Font font;
 	private MenuBox menu;
-	private static final int DEFAULT_WIDTH = 1280;// 16:9 Ratio
-	private static final int DEFAUlT_HEIGHT = 800;
+	public static final int DEFAULT_WIDTH = 1280;// 16:9 Ratio
+	public static final int DEFAUlT_HEIGHT = 800;
 	
 
 	@Override
@@ -92,6 +77,11 @@ public class Main extends Application {
 				itemQuit); // set iteamQuit เสดก็ใส่ตรวนี้
 
 		root.getChildren().add(menu);
+		// set fix height and width
+		primaryStage.setMaxHeight(DEFAUlT_HEIGHT);
+		primaryStage.setMaxWidth(DEFAULT_WIDTH);
+		primaryStage.setMinHeight(DEFAUlT_HEIGHT);
+		primaryStage.setMinWidth(DEFAULT_WIDTH);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Cy3erPunk");
 		primaryStage.show();
@@ -142,7 +132,7 @@ public class Main extends Application {
 		}
 	}
 
-	private static class MenuBox extends StackPane {
+	/*private static class MenuBox extends StackPane {
 		private int recwidth = (int) (DEFAULT_WIDTH * 0.35);
 
 		public MenuBox(String title, MenuItem... items) { // Menuitems... เเปลว่าจะรับข้อมูลเเนว menuitem ได้หลายตัว
@@ -225,7 +215,7 @@ public class Main extends Application {
 			});
 
 		}
-	}
+	}*/
 
 	public static void main(String[] args) {
 		launch(args);

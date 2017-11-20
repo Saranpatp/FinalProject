@@ -1,5 +1,6 @@
 package drawing;
 
+import application.Main;
 import input.InputUtility;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -13,8 +14,8 @@ import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
 public class GameUI extends Canvas{
-	public static final int DEFAULT_GAME_WIDTH = 1280;  
-	public static final int DEFAULT_GAME_HEIGHT = 800;
+	public static final int DEFAULT_GAME_WIDTH = Main.DEFAULT_WIDTH;  
+	public static final int DEFAULT_GAME_HEIGHT = Main.DEFAUlT_HEIGHT;
 	
 	public GameUI() {
 		super(DEFAULT_GAME_WIDTH, DEFAULT_GAME_HEIGHT);

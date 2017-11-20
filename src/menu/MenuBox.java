@@ -1,0 +1,55 @@
+package menu;
+
+import application.Main;
+import menu.MenuItem;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+
+public class MenuBox extends StackPane {
+	private int recwidth = (int) (Main.DEFAULT_WIDTH * 0.35);
+
+	public MenuBox(String title, MenuItem... items) { // Menuitems... เเปลว่าจะรับข้อมูลเเนว menuitem ได้หลายตัว
+		Rectangle bg = new Rectangle(recwidth, Main.DEFAUlT_HEIGHT);
+		bg.setOpacity(0.5); // set opacity ที่ 20%
+
+		DropShadow shadow = new DropShadow(7, 5, 0, Color.BLACK);
+		shadow.setSpread(0.8);// เงา spread มากขึ้น
+
+		bg.setEffect(shadow);
+
+		Text text = new Text(title + " ");
+
+		text.setFont(Main.font);
+		text.setFill(Color.WHITE);
+
+		Line hSep = new Line(); // เส้นใต้ title
+		hSep.setEndX(recwidth); // เส้นราบเเนวเเกน x เเนวนิน
+		hSep.setStroke(Color.PLUM);
+		hSep.setOpacity(0.4);// ********************************change
+
+		Line vSep = new Line();// เส้นเเนตั้ง
+		vSep.setStartX(recwidth);
+		vSep.setEndX(recwidth);
+		vSep.setEndY(Main.DEFAULT_WIDTH);
+		vSep.setStroke(Color.DARKMAGENTA);
+		vSep.setOpacity(0.4);
+
+		VBox vbox = new VBox();
+		vbox.setAlignment(Pos.TOP_RIGHT);
+		vbox.setPadding(new Insets(55, 0, 0, 0));
+		vbox.getChildren().addAll(text, hSep);// ใส่พวก menu item ทั้งหมดลง ใน vbox
+		vbox.getChildren().addAll(items);
+
+		setAlignment(Pos.TOP_RIGHT); // top right of stack pane
+		getChildren().addAll(bg, vSep, vbox);
+
+	}
+}
+
