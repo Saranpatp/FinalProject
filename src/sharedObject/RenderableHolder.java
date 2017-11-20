@@ -18,14 +18,23 @@ public class RenderableHolder {
 
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
-	public static Image mapSprite;
-	public static Image mineSprite;
-	public static AudioClip  explosionSound;
-	public static Image explodePic;
+	public static AudioClip damageSound;
+	public static AudioClip deathSound;
+	
 	static {
-		//loadResource();
+		loadResource();
 	}
 
+	public static void loadResource() {
+		try {
+			damageSound = new AudioClip(ClassLoader.getSystemResource("damageSound.wav").toString());
+			deathSound = new AudioClip(ClassLoader.getSystemResource("deathSound.wav").toString());
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Cant load damage sound in RenderHolder");
+		}
+		
+	}
 	public RenderableHolder() {
 		entities = new ArrayList<IRenderable>();
 		comparator = (IRenderable o1, IRenderable o2) -> {
@@ -39,12 +48,7 @@ public class RenderableHolder {
 		return instance;
 	}
 
-	public static void loadResource() {
-		mapSprite = new Image(ClassLoader.getSystemResource("Map.png").toString());
-		mineSprite = new Image(ClassLoader.getSystemResource("Mine.png").toString());
-		explosionSound = new AudioClip(ClassLoader.getSystemResource("Explosion.wav").toString());
-		explodePic = new Image(ClassLoader.getSystemResource("Explode.png").toString());
-	}
+	
 
 	public void add(IRenderable entity) {
 		System.out.println("add");

@@ -7,6 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import sharedObject.RenderableHolder;
 
 public class Bullet extends MovingEntity {
 	int diameter; // how large the bullet will be
@@ -22,13 +23,10 @@ public class Bullet extends MovingEntity {
 			for(int j = 0; j<enemywave[i].length;j++) {
 				if(this.collideWith(enemywave[i][j])&&!enemywave[i][j].isDestroyed()) {
 					//decrease health
-					try {
-						AudioClip damageSound = new AudioClip(ClassLoader.getSystemResource("damageSound.wav").toString());
-						damageSound.play();
-					} catch (Exception e) {
-						// TODO: handle exception
-						System.out.println("cant load damage sound");
-					}
+					
+						//AudioClip damageSound = new AudioClip(ClassLoader.getSystemResource("damageSound.wav").toString());
+					RenderableHolder.damageSound.play();
+					
 					enemywave[i][j].decreaseHealth(damage);//visible is not set
 					destroyed=true;// this destroy the bullet
 					return isDestroyed(); // this return this bullet is destroy
