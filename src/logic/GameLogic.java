@@ -15,7 +15,8 @@ public class GameLogic {
 	private int enemycolSpace = 80; //40pixel space each
 	private int enemyrowSpace = 80;// 40pixel apart previous row
 	//add a wave of enemy by using array[][] to do so
-	//private Bullet bullet;
+
+	private int bulletCounter=0;//will reduce rate of fire
 	public void spawnEnemy(int wavenumber) {//still have only wave number 1 must update to 1-3 level and then boss
 		if(wavenumber==1) {//set their health to be low too
 			for(int i =0;i<wave.length;i++) {
@@ -35,7 +36,9 @@ public class GameLogic {
 		this.gameObjectContainer=new ArrayList<Entity>();
 		ship = new Ship(500,700);
 		spawnEnemy(1);
+		Shield shield = new Shield(ship);
 		addNewObject(ship);
+		addNewObject(shield);
 		
 		
 	}
@@ -45,14 +48,16 @@ public class GameLogic {
 	}
 	
 	public void logicUpdate(){
-
+		if(bulletCounter<20) bulletCounter+=1;
+		System.out.println("bullet COunter" + bulletCounter);
 		//enemy.update();
 		ship.update();
 		if(ship.isShooting) {
 			shoot();
-			
+			ship.isShooting=false;
 		}
-		ship.isShooting=false;
+		
+		//bulletCounter=0;
 		RenderableHolder.getInstance().update();
 		for (int i = gameObjectContainer.size() - 1; i >= 0; i--) {
 			if(gameObjectContainer.get(i) instanceof Enemy){
@@ -73,6 +78,7 @@ public class GameLogic {
 		RenderableHolder.getInstance().update();
 	}
 	private void shoot() {
+		if(bulletCounter==0||bulletCounter%10==0) {
 		try {
 			AudioClip shootsound = new AudioClip(ClassLoader.getSystemResource("bulletSound.wav").toString());
 			shootsound.play();
@@ -81,8 +87,11 @@ public class GameLogic {
 			System.out.println("Cant load bullet sound");
 		}
 		Bullet bullet = new Bullet(ship.x,ship.y,0,10,10);
-		addNewObject(bullet);
 		
+		addNewObject(bullet);
+		bulletCounter=0;
+		}
+		// gotta add bullet reloaded UI
 	}
 		
 }

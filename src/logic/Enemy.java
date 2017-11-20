@@ -14,7 +14,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Enemy extends MovingEntity{
 	
-	protected final int DEFAULT_ALIEN_HEALTH = 3; //have to hit it 10 time
+	protected final int DEFAULT_ALIEN_HEALTH = 1; //have to hit it 1 time
 	protected int health;
 	private int enemytype,width,height;
 	//public boolean deleted;
@@ -33,7 +33,7 @@ public class Enemy extends MovingEntity{
 		this.health = health;
 	}
 	public void decreaseHealth(int damage) {// for more level gun
-		if(health-damage<0) {
+		if(health-damage<=0) {
 			health=0;
 			destroyed=true;
 		}

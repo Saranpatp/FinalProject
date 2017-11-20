@@ -33,7 +33,7 @@ public class Ship extends MovingEntity {
 		//if(y<680&&y>-50)
 		this.y+=ySpeed;
 		if(y<0) y=0;
-		if(y>GameUI.DEFAULT_GAME_HEIGHT-50) y=GameUI.DEFAULT_GAME_HEIGHT-50;
+		if(y>GameUI.DEFAULT_GAME_HEIGHT-100) y=GameUI.DEFAULT_GAME_HEIGHT-100;
 		//else this.y+=ySpeed;
 	}
 	private void moveLR() {

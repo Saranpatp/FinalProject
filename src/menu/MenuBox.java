@@ -42,17 +42,20 @@ public class MenuBox extends StackPane {
 	
 		text.setFont(Main.font);
 		text.setFill(Color.WHITE);
-		ft = new FadeTransition(Duration.millis(1000),text);
+		ft = new FadeTransition(Duration.millis(750),text);
 		ft.setFromValue(1.0);
-	    ft.setToValue(0.3);
+	    ft.setToValue(0);
 	    ft.setCycleCount(100);
 	    ft.setAutoReverse(true);
 	    ft.play();
 
-		Line hSep = new Line(); // เส้นใต้ title
+	    Rectangle boarder = new Rectangle(0,0,250,300);
+	    boarder.setFill(Color.GRAY);
+	    
+		/*Line hSep = new Line(); // เส้นใต้ title
 		hSep.setEndX(recwidth); // เส้นราบเเนวเเกน x เเนวนิน
 		hSep.setStroke(Color.PLUM);
-		hSep.setOpacity(0.4);// ********************************change
+		hSep.setOpacity(0.4);// ********************************change*/
 
 		Line vSep = new Line();// เส้นเเนตั้ง
 		vSep.setStartX(recwidth);
@@ -64,7 +67,7 @@ public class MenuBox extends StackPane {
 		VBox vbox = new VBox();
 		vbox.setAlignment(Pos.TOP_RIGHT);
 		vbox.setPadding(new Insets(55, 0, 0, 0));
-		vbox.getChildren().addAll(text, hSep);// ใส่พวก menu item ทั้งหมดลง ใน vbox
+		vbox.getChildren().addAll(text);// ใส่พวก menu item ทั้งหมดลง ใน vbox
 		vbox.getChildren().addAll(items);
 
 		setAlignment(Pos.TOP_RIGHT); // top right of stack pane

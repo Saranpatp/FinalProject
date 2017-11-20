@@ -6,38 +6,24 @@ import javafx.scene.shape.Rectangle;
 
 public class Shield extends Entity {
 	
-	protected int width;
+	protected int radius;
 	protected int height;
 	
-	public Shield(int x,int y, int width,int height) {
-		super(x, y);
-		this.z=100;
-		this.width = width;
-		this.height= height;
+	public Shield(Ship ship) {
+		x=ship.getX();
+		y=ship.getY();
+		radius = 50;
+		z=100000;
 	}
 	
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
+	
 
 	@Override
 	public void draw(GraphicsContext gc) {//this shield should be around the ship
 		// TODO Auto-generated method stub
 		gc.setFill(Color.AQUA);
 		//gc.setOp
-		gc.fillRect(getX(), getY(), 90, 10);
+		gc.fillOval(getX(), getY(), radius, radius);
 		
 	}
 
