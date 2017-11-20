@@ -29,8 +29,9 @@ public class MenuItem extends StackPane {// ตัวเมนูต่างๆ
 																	// x,drop at y,colour
 
 		Text text = new Text(name + "      ");
-		text.setFill(Color.LIGHTGREY);
+		text.setFill(Color.GAINSBORO);
 		text.setFont(Font.font(30));
+		text.setOpacity(0.825);
 		
 		/*FadeTransition ft = new FadeTransition(Duration.millis(2000),bg);
 		ft.setFromValue(1.0);
@@ -49,7 +50,7 @@ public class MenuItem extends StackPane {// ตัวเมนูต่างๆ
 
 		setOnMouseExited(event -> {
 			bg.setVisible(false);
-			text.setFill(Color.LIGHTGRAY);
+			text.setFill(Color.GAINSBORO);
 		});
 
 		setOnMousePressed(event -> {

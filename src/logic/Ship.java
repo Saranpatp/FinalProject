@@ -52,6 +52,7 @@ public class Ship extends MovingEntity {
 				health = 0;
 				destroyed = true;
 				RenderableHolder.deathSound.play();
+				System.out.println("your die! noobS");
 			} else
 				health -= damage;
 		}

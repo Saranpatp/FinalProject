@@ -47,7 +47,7 @@ public class GameLogic {
 	
 	public void logicUpdate(){
 		if(bulletCounter<20) bulletCounter+=1;
-		//System.out.println("bullet COunter" + bulletCounter);//test bullet reload
+		System.out.println("bullet COunter" + bulletCounter);//test bullet reload
 		//enemy.update();
 		ship.update();
 		if(ship.isShooting) {
@@ -79,7 +79,7 @@ public class GameLogic {
 		RenderableHolder.getInstance().update();
 	}
 	private void shoot() {
-		if(bulletCounter==0||bulletCounter%10==0) {
+		if(bulletCounter==0||bulletCounter%20==0) {
 		try {
 			AudioClip shootsound = new AudioClip(ClassLoader.getSystemResource("bulletSound.wav").toString());
 			shootsound.play();
@@ -87,7 +87,7 @@ public class GameLogic {
 			// TODO: handle exception
 			System.out.println("Cant load bullet sound");
 		}
-		Bullet bullet = new Bullet(ship.getX(),ship.getY(),0,10,10);
+		Bullet bullet = new Bullet(ship.getX(),ship.getY(),0,15,10);
 		
 		addNewObject(bullet);
 		bulletCounter=0;

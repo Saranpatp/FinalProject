@@ -52,10 +52,13 @@ public class MenuBox extends StackPane {
 	    Rectangle boarder = new Rectangle(0,0,250,300);
 	    boarder.setFill(Color.GRAY);
 	    
-		/*Line hSep = new Line(); // เส้นใต้ title
-		hSep.setEndX(recwidth); // เส้นราบเเนวเเกน x เเนวนิน
-		hSep.setStroke(Color.PLUM);
-		hSep.setOpacity(0.4);// ********************************change*/
+	    /*Line hSep = new Line(); // เส้นใต้ title
+	   // hSep.setStartX(recwidth*0.20);
+	    hSep.setEndX(recwidth); // เส้นราบเเนวเเกน x เเนวนิน
+	    hSep.setStrokeWidth(3);
+		hSep.setStroke(Color.LIGHTGRAY);*/
+		
+		//hSep.setOpacity(1);// ********************************change*/
 
 		Line vSep = new Line();// เส้นเเนตั้ง
 		vSep.setStartX(recwidth);
