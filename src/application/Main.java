@@ -37,11 +37,13 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		try {//playsong
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("Ost2.wav"));
+			//playsong
+			/*AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("Ost2.wav"));
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
-			clip.start();
+			clip.start();*/
+			//RenderableHolder.gameSong.play();
+			RenderableHolder.themeSong.play();
 		
 		Pane root = new Pane();
 		Scene scene = new Scene(root);
@@ -68,7 +70,9 @@ public class Main extends Application {
 		MenuItem itemStart = new MenuItem("START GAME");
 		itemQuit.setOnMouseClicked(event -> System.exit(0)); // ใส่ function ให้ ปุ่ม quit
 		itemStart.setOnMouseClicked(event ->{
-			clip.stop();// stop the music before game start
+			//clip.stop();// stop the music before game start
+			RenderableHolder.themeSong.stop();
+			//RenderableHolder.gameSong.play();
 			primaryStage.setScene(startgame());
 			
 		});
@@ -85,9 +89,6 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Cy3erPunk");
 		primaryStage.show();
-		} catch (Exception ex) {
-			System.out.println("Cant load wav");
-		}
 	}
 
 	public Scene startgame() {

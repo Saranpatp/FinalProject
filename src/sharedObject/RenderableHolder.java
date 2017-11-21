@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.sound.sampled.AudioSystem;
+
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import logic.Bullet;
@@ -21,7 +23,8 @@ public class RenderableHolder {
 	public static AudioClip damageSound;
 	public static AudioClip deathSound;
 	public static AudioClip shieldSound;
-	
+	public static AudioClip gameSong;
+	public static AudioClip themeSong;
 	static {
 		loadResource();
 	}
@@ -31,6 +34,8 @@ public class RenderableHolder {
 			damageSound = new AudioClip(ClassLoader.getSystemResource("damageSound.wav").toString());
 			deathSound = new AudioClip(ClassLoader.getSystemResource("deathSound.wav").toString());
 			shieldSound = new AudioClip(ClassLoader.getSystemResource("shieldSound.wav").toString());
+			themeSong = new AudioClip(ClassLoader.getSystemResource("Ost2.wav").toString());
+			gameSong = new AudioClip(ClassLoader.getSystemResource("gameSong.wav").toString());
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Cant load damage sound in RenderHolder");
