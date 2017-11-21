@@ -49,8 +49,8 @@ public class Bullet extends MovingEntity {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.setFill(Color.WHEAT);
-        gc.fillRect(x+21, y, 7, diameter);
+		gc.setFill(Color.GREENYELLOW);
+        gc.fillRect(x+22, y, 5, diameter);
 		
 	}
 	public void update() {

@@ -25,6 +25,7 @@ public class Ship extends MovingEntity {
 	private final int MIN_SHIELD_DURATION=300;
 	private Shield shield;
 	protected int health;
+	private int shipLv;
 
 	/*
 	 * /life counter

@@ -25,6 +25,7 @@ public class GameLogic {
 				for(int j = 0; j<wave[i].length;j++) {
 					wave[i][j] = new Enemy(j*enemycolSpace, i*enemyrowSpace, 1+((wavenumber-1)*5), 0, wavenumber, 40, 40);// i must be y axis because it indicate the row
 					addNewObject(wave[i][j]);
+					wave[i][j].setHealth(1+(wavenumber*5));//tougher enemy
 				}
 				
 			}
@@ -79,7 +80,7 @@ public class GameLogic {
 		}
 		RenderableHolder.getInstance().update();
 	}
-	private void shoot() {
+	private void shoot() {// shoot will take in when we have score and ship level and then we will level up these cannon
 		if(bulletCounter==0||bulletCounter%20==0) {
 		try {
 			AudioClip shootsound = new AudioClip(ClassLoader.getSystemResource("bulletSound.wav").toString());
@@ -88,9 +89,16 @@ public class GameLogic {
 			// TODO: handle exception
 			System.out.println("Cant load bullet sound");
 		}
-		Bullet bullet = new Bullet(ship.getX(),ship.getY(),0,15,10);
-		
+		Bullet bullet = new Bullet(ship.getX(),ship.getY()+3,0,15,10);
+		Bullet oleftbullet = new Bullet(ship.getX()-24,ship.getY()+30,0,15,10);//outer left gun
+		Bullet orightbullet = new Bullet(ship.getX()+24,ship.getY()+30,0,15,10);//outer right gun
+		Bullet ileftbullet = new Bullet(ship.getX()-15,ship.getY()+27,0,15,10);//outer left gun
+		Bullet irightbullet = new Bullet(ship.getX()+15,ship.getY()+27,0,15,10);//outer right gun
 		addNewObject(bullet);
+		addNewObject(oleftbullet);
+		addNewObject(orightbullet);
+		addNewObject(ileftbullet);
+		addNewObject(irightbullet);
 		bulletCounter=0;
 		}
 		// gotta add bullet reloaded UI
