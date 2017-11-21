@@ -9,11 +9,10 @@ public class Shield extends Entity {
 	protected int radius;
 	protected int height;
 	
-	public Shield(Ship ship) {
-		x=ship.getX();
-		y=ship.getY();
-		radius = 50;
-		z=0;
+	public Shield(int x,int y) {
+		super(x,y);
+		radius = 75;
+		z=1000;
 	}
 	
 	
@@ -21,12 +20,14 @@ public class Shield extends Entity {
 	@Override
 	public void draw(GraphicsContext gc) {//this shield should be around the ship
 		// TODO Auto-generated method stub
-		gc.setFill(Color.AQUA);
+		//gc.setFill(Color.AQUA);
 		System.out.println("Shield here****************************************");
 		System.out.println("shield x ="+x);
 		System.out.println("shield y ="+y);
-		//gc.setOp
-		gc.fillOval(getX(), getY(), radius, radius);
+		gc.setLineWidth(5);
+		gc.setStroke(Color.AQUA);
+		gc.strokeOval(getX()-13, getY()-10, radius, radius);
+		
 		
 		
 	}
@@ -36,7 +37,7 @@ public class Shield extends Entity {
 	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
-		Rectangle shieldHitbox = new Rectangle(getX(),getY(),90,10);
+		Rectangle shieldHitbox = new Rectangle(getX()-13,getY()-10,radius,radius);
 		return shieldHitbox;
 	}
 	

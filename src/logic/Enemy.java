@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import sharedObject.RenderableHolder;
 
 public class Enemy extends MovingEntity{
 	
@@ -64,6 +65,10 @@ public class Enemy extends MovingEntity{
 		}
 		
 	}
+	public void hit() { //when ship hit the enemy
+		decreaseHealth(2);//more damage than shoot
+		RenderableHolder.damageSound.play();
+	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
@@ -83,6 +88,7 @@ public class Enemy extends MovingEntity{
 		}
 		
 	}
+	
 	
 	public void update() {
 		if(x<0 || x>GameUI.DEFAULT_GAME_WIDTH-40) {

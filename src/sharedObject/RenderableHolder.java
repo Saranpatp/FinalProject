@@ -20,6 +20,7 @@ public class RenderableHolder {
 	private Comparator<IRenderable> comparator;
 	public static AudioClip damageSound;
 	public static AudioClip deathSound;
+	public static AudioClip shieldSound;
 	
 	static {
 		loadResource();
@@ -29,6 +30,7 @@ public class RenderableHolder {
 		try {
 			damageSound = new AudioClip(ClassLoader.getSystemResource("damageSound.wav").toString());
 			deathSound = new AudioClip(ClassLoader.getSystemResource("deathSound.wav").toString());
+			shieldSound = new AudioClip(ClassLoader.getSystemResource("shieldSound.wav").toString());
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Cant load damage sound in RenderHolder");

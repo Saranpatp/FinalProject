@@ -19,7 +19,11 @@ public class Ship extends MovingEntity {
 	private int flashCounter;
 	private int flashDurationCounter;
 	public boolean isShooting = false;
-
+	public boolean isShieldON = false;
+	private int shieldCounter; // will have ui for this
+	private final int MAX_SHIELD_DURATION=600;//max 10 sec of shield
+	private final int MIN_SHIELD_DURATION=300;
+	private Shield shield;
 	protected int health;
 
 	/*
@@ -29,13 +33,34 @@ public class Ship extends MovingEntity {
 	public Ship(int x, int y) {// keyboard contorl
 		super(x, y, DEFAULT_XSPEED, DEFAULT_YSPEED);
 		health = DEFAULT_HEALTH;
-
+		z=1000;
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
+		//Health UI
+		gc.setLineWidth(1);
+		gc.setStroke(Color.WHITE);
+		gc.strokeRect(50, 30, DEFAULT_HEALTH*100, 10);
+				
+		gc.setFill(Color.RED);
+		gc.fillRect(50, 30, health*100, 10);
+		//ship
 		gc.drawImage(ship, x, y);
-
+		if (isShieldON) {
+			shield = new Shield(x, y);
+			shield.draw(gc);
+		}else gc.setLineWidth(1);
+		
+		//shield UI
+		gc.setStroke(Color.RED);
+		gc.strokeRect(50, 50, MIN_SHIELD_DURATION*0.5, 10); //minlimit
+		
+		gc.setStroke(Color.WHITE);
+		gc.strokeRect(50, 50, MAX_SHIELD_DURATION*0.5, 10);//max limit
+		
+		gc.setFill(Color.CHARTREUSE);
+		gc.fillRect(50, 50, shieldCounter*0.5, 10);//shield bar
 	}
 
 	/*
@@ -43,19 +68,24 @@ public class Ship extends MovingEntity {
 	 * decreaseHealth(1);//ª¹ Åº1 health return } }
 	 */
 	public void decreaseHealth(int damage) {
-		if (!flashing) {
-			RenderableHolder.damageSound.play();
-			flashCounter = 10;
-			flashDurationCounter = 20;
-			flashing = true;
-			if (health - damage <= 0) {
-				health = 0;
-				destroyed = true;
-				RenderableHolder.deathSound.play();
-				System.out.println("your die! noobS");
-			} else
-				health -= damage;
+		if (!isShieldON) {
+			if (!flashing) {
+				RenderableHolder.damageSound.play();
+				flashCounter = 10;
+				flashDurationCounter = 10;
+				flashing = true;
+				if (health - damage <= 0) {
+					health = 0;
+					destroyed = true;
+					RenderableHolder.deathSound.play();
+					System.out.println("your die! noobS");
+				} else
+					health -= damage;
+			}
+		}else {
+			RenderableHolder.shieldSound.play();
 		}
+		
 
 	}
 
@@ -83,12 +113,22 @@ public class Ship extends MovingEntity {
 	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
+		if (isShieldON)
+			return shield.getBounds();
 		Rectangle shipHitbox = new Rectangle(x, y, 50, 50);
 		shipHitbox.setFill(Color.BLUE);
 		return shipHitbox;
 	}
 
 	public void update() {
+		//if(isShieldON) {shield = new Shield(x, y);}
+		if(isShieldON) {
+			shieldCounter--;
+			if(shieldCounter<=0) isShieldON=false;
+		}else if(shieldCounter<600) {
+			shieldCounter++;
+		}System.out.println("Shieldcounter ="+shieldCounter);
+		
 		if (flashing) {
 			if (flashCounter == 0) {
 				this.visible = true;
@@ -119,6 +159,11 @@ public class Ship extends MovingEntity {
 		if (InputUtility.getKeyPressed(KeyCode.S)) {
 			ySpeed = DEFAULT_YSPEED;
 			moveFB();
+		}
+		if (InputUtility.getKeyPressed(KeyCode.F)) {
+			if (!isShieldON&&shieldCounter>=300)
+				isShieldON = true; // can only turn on shield shield will drain the power and then off
+			// else isShieldON=true;
 		}
 		if (InputUtility.getKeyPressed(KeyCode.A)) {
 			xSpeed = -DEFAULT_XSPEED;
