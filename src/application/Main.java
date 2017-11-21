@@ -44,7 +44,8 @@ public class Main extends Application {
 			clip.start();*/
 			//RenderableHolder.gameSong.play();
 			RenderableHolder.themeSong.play();
-		
+			
+			
 		Pane root = new Pane();
 		Scene scene = new Scene(root);
 		root.setPrefSize(DEFAULT_WIDTH, DEFAUlT_HEIGHT);

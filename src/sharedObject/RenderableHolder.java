@@ -35,7 +35,7 @@ public class RenderableHolder {
 			deathSound = new AudioClip(ClassLoader.getSystemResource("deathSound.wav").toString());
 			shieldSound = new AudioClip(ClassLoader.getSystemResource("shieldSound.wav").toString());
 			themeSong = new AudioClip(ClassLoader.getSystemResource("Ost2.wav").toString());
-			gameSong = new AudioClip(ClassLoader.getSystemResource("gameSong.wav").toString());
+			gameSong = new AudioClip(ClassLoader.getSystemResource("gameSong2.wav").toString());
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Cant load damage sound in RenderHolder");

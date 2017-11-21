@@ -25,16 +25,18 @@ public class GameLogic {
 				for(int j = 0; j<wave[i].length;j++) {
 					wave[i][j] = new Enemy(j*enemycolSpace, i*enemyrowSpace, 1+((wavenumber-1)*5), 0, wavenumber, 40, 40);// i must be y axis because it indicate the row
 					addNewObject(wave[i][j]);
-					wave[i][j].setHealth(1+(wavenumber*5));//tougher enemy
+					wave[i][j].setHealth((wavenumber));//tougher enemy
 				}
 				
 			}
 		}
 	}
 	public GameLogic() {
+		RenderableHolder.gameSong.play();
+		RenderableHolder.gameSong.setCycleCount(-1);
 		this.gameObjectContainer=new ArrayList<Entity>();
 		ship = new Ship(500,700);
-		spawnEnemy(2);
+		spawnEnemy(1);
 		//Shield shield = new Shield(ship);
 		addNewObject(ship);
 		//addNewObject(shield);
@@ -62,8 +64,10 @@ public class GameLogic {
 		for (int i = gameObjectContainer.size() - 1; i >= 0; i--) {
 			if(gameObjectContainer.get(i) instanceof Enemy){
 				if(ship.collideWith((Enemy) gameObjectContainer.get(i))){
+					if(!ship.flashing&&!ship.destroyed) {
 					((Enemy) gameObjectContainer.get(i)).hit();
 					ship.decreaseHealth(1);
+					}
 				}
 				((Enemy) gameObjectContainer.get(i)).update();
 				}
@@ -91,15 +95,15 @@ public class GameLogic {
 			System.out.println("Cant load bullet sound");
 		}
 		Bullet bullet = new Bullet(ship.getX(),ship.getY()+3,0,15,10);
-		Bullet oleftbullet = new Bullet(ship.getX()-24,ship.getY()+30,0,15,10);//outer left gun
+		/*Bullet oleftbullet = new Bullet(ship.getX()-24,ship.getY()+30,0,15,10);//outer left gun
 		Bullet orightbullet = new Bullet(ship.getX()+24,ship.getY()+30,0,15,10);//outer right gun
 		Bullet ileftbullet = new Bullet(ship.getX()-15,ship.getY()+27,0,15,10);//outer left gun
-		Bullet irightbullet = new Bullet(ship.getX()+15,ship.getY()+27,0,15,10);//outer right gun
+		Bullet irightbullet = new Bullet(ship.getX()+15,ship.getY()+27,0,15,10);//outer right gun*/
 		addNewObject(bullet);
-		addNewObject(oleftbullet);
+		/*addNewObject(oleftbullet);
 		addNewObject(orightbullet);
 		addNewObject(ileftbullet);
-		addNewObject(irightbullet);
+		addNewObject(irightbullet);*/
 		bulletCounter=0;
 		}
 		// gotta add bullet reloaded UI

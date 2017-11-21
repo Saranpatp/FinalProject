@@ -15,7 +15,7 @@ public class Ship extends MovingEntity {
 	private static int DEFAULT_XSPEED = 10;
 	private static int DEFAULT_YSPEED = 10;
 	private static int DEFAULT_HEALTH = 3;// 3 life
-	private boolean flashing = false;
+	public boolean flashing = false;
 	private int flashCounter;
 	private int flashDurationCounter;
 	public boolean isShooting = false;

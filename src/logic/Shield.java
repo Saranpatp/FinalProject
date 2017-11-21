@@ -25,7 +25,7 @@ public class Shield extends Entity {
 		System.out.println("shield x ="+x);
 		System.out.println("shield y ="+y);
 		gc.setLineWidth(5);
-		gc.setStroke(Color.AQUA);
+		gc.setStroke(Color.CORNFLOWERBLUE);
 		gc.strokeOval(getX()-13, getY()-10, radius, radius);
 		
 		
