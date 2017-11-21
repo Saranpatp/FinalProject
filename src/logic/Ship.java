@@ -128,7 +128,7 @@ public class Ship extends MovingEntity {
 			if(shieldCounter<=0) isShieldON=false;
 		}else if(shieldCounter<600) {
 			shieldCounter++;
-		}System.out.println("Shieldcounter ="+shieldCounter);
+		}//System.out.println("Shieldcounter ="+shieldCounter);
 		
 		if (flashing) {
 			if (flashCounter == 0) {

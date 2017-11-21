@@ -21,9 +21,9 @@ public class Shield extends Entity {
 	public void draw(GraphicsContext gc) {//this shield should be around the ship
 		// TODO Auto-generated method stub
 		//gc.setFill(Color.AQUA);
-		System.out.println("Shield here****************************************");
+		/*System.out.println("Shield here****************************************");
 		System.out.println("shield x ="+x);
-		System.out.println("shield y ="+y);
+		System.out.println("shield y ="+y);*/
 		gc.setLineWidth(5);
 		gc.setStroke(Color.CORNFLOWERBLUE);
 		gc.strokeOval(getX()-13, getY()-10, radius, radius);

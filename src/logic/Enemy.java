@@ -37,6 +37,7 @@ public class Enemy extends MovingEntity{
 		if(health-damage<=0) {
 			health=0;
 			destroyed=true;
+			GameLogic.enemybodycount++;
 		}
 		else health-=damage;
 	}

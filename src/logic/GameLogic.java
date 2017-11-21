@@ -18,6 +18,9 @@ public class GameLogic {
 
 	private int bulletCounter=0;//will reduce rate of fire
 	private int enemyShootCounter=0;//enemy will able too shoot later on
+	private int enemyWave=1;
+	public static int enemybodycount=0;
+	
 	
 	public void spawnEnemy(int wavenumber) {//still have only wave number 1 must update to 1-3 level and then boss
 		if(wavenumber<=3&&wavenumber>0) {//set their health to be low too
@@ -36,7 +39,7 @@ public class GameLogic {
 		RenderableHolder.gameSong.setCycleCount(-1);
 		this.gameObjectContainer=new ArrayList<Entity>();
 		ship = new Ship(500,700);
-		spawnEnemy(1);
+		spawnEnemy(enemyWave);
 		//Shield shield = new Shield(ship);
 		addNewObject(ship);
 		//addNewObject(shield);
@@ -49,7 +52,12 @@ public class GameLogic {
 	}
 	
 	public void logicUpdate(){
-		
+		if(enemybodycount==50) {
+			enemyWave++;
+			spawnEnemy(enemyWave);
+			enemybodycount=0;
+		}
+		System.out.println("enemybodycount"+enemybodycount);
 		if(bulletCounter<20) bulletCounter+=1;
 		//System.out.println("bullet COunter" + bulletCounter);//test bullet reload
 		//enemy.update();
@@ -67,8 +75,11 @@ public class GameLogic {
 					if(!ship.flashing&&!ship.destroyed) {
 					((Enemy) gameObjectContainer.get(i)).hit();
 					ship.decreaseHealth(1);
+					//if(((Enemy) gameObjectContainer.get(i)).destroyed) enemybodycount++;
 					}
+					
 				}
+				
 				((Enemy) gameObjectContainer.get(i)).update();
 				}
 			if (gameObjectContainer.get(i) instanceof Bullet) {
