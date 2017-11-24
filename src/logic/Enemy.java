@@ -101,6 +101,7 @@ public class Enemy extends MovingEntity{
 		//**************************yspeed add in later ใส่ ที่หลังให้เคลื่อน ตอนหมดจอ
 		if(y>GameUI.DEFAULT_GAME_HEIGHT||y<0) {
 			destroyed=true;//fixed memory leak
+			GameLogic.enemybodycount++;
 		}
 		
 	}

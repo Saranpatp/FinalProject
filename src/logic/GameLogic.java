@@ -106,6 +106,7 @@ public class GameLogic {
 			System.out.println("Cant load bullet sound");
 		}
 		Bullet bullet = new Bullet(ship.getX(),ship.getY()+3,0,15,10);
+		//will add ship level later
 		/*Bullet oleftbullet = new Bullet(ship.getX()-24,ship.getY()+30,0,15,10);//outer left gun
 		Bullet orightbullet = new Bullet(ship.getX()+24,ship.getY()+30,0,15,10);//outer right gun
 		Bullet ileftbullet = new Bullet(ship.getX()-15,ship.getY()+27,0,15,10);//outer left gun
