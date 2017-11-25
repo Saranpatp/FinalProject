@@ -76,7 +76,7 @@ public class Main extends Application {
 			//RenderableHolder.gameSong.play();
 			primaryStage.setScene(startgame());
 			
-		});
+		});//
 
 		menu = new MenuBox("cy3erpunk", itemStart, new MenuItem("HELP"), new MenuItem("CREDITS"),
 				itemQuit); // set iteamQuit เสดก็ใส่ตรวนี้
